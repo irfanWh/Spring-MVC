@@ -1,28 +1,28 @@
-package com.irfan.springmvc.entities;
+package com.example.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.Min;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
-@Builder
+@AllArgsConstructor
 public class Product {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotEmpty
-    @Size(min = 3, max = 50)
+    @Size(min = 4, max = 40)
     private String name;
-    @Min(0)
+
+    @Positive
     private double price;
-    @Min(1)
-    private double quantity;
+
+    private int quantity;
 }
