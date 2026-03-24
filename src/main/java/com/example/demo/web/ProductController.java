@@ -1,7 +1,7 @@
 package com.example.demo.web;
 
 import com.example.demo.entities.Product;
-import com.example.demo.repositories.ProductRepository;
+import com.example.demo.repository.ProductRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;

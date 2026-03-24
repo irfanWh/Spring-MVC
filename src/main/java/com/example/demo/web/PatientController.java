@@ -1,7 +1,7 @@
 package com.example.demo.web;
 
 import com.example.demo.entities.Patient;
-import com.example.demo.repositories.PatientRepository;
+import com.example.demo.repository.PatientRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;

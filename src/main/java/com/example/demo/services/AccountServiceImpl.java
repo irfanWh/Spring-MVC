@@ -2,8 +2,8 @@ package com.example.demo.services;
 
 import com.example.demo.entities.AppRole;
 import com.example.demo.entities.AppUser;
-import com.example.demo.repositories.AppRoleRepository;
-import com.example.demo.repositories.AppUserRepository;
+import com.example.demo.repository.AppRoleRepository;
+import com.example.demo.repository.AppUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

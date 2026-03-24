@@ -1,4 +1,4 @@
-package com.example.demo.repositories;
+package com.example.demo.repository;
 
 import com.example.demo.entities.Product;
 import org.springframework.data.domain.Page;
