@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Medecin Form</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0" th:text="${medecin.id != null} ? 'Edit Medecin' : 'New Medecin'">Medecin Form</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" th:action="@{/admin/saveMedecin}" th:object="${medecin}">
+                <input type="hidden" th:field="*{id}">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control" th:field="*{name}"
+                           th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" th:field="*{email}">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Specialite</label>
+                    <input type="text" class="form-control" th:field="*{specialite}">
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save"></i> Save
+                </button>
+                <a th:href="@{/user/medecins}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

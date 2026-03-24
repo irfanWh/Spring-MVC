@@ -4,19 +4,19 @@
       layout:decorate="~{layout}"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <title>Products</title>
+    <title>Patients</title>
 </head>
 <body>
 <section layout:fragment="content">
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Product List</h5>
-            <a th:href="@{/admin/formProducts}" class="btn btn-primary btn-sm" sec:authorize="hasRole('ADMIN')">
-                <i class="bi bi-plus-circle"></i> New Product
+            <h5 class="mb-0">Patient List</h5>
+            <a th:href="@{/admin/formPatients}" class="btn btn-primary btn-sm" sec:authorize="hasRole('ADMIN')">
+                <i class="bi bi-plus-circle"></i> New Patient
             </a>
         </div>
         <div class="card-body">
-            <form method="get" th:action="@{/user/index}" class="mb-3">
+            <form method="get" th:action="@{/user/patients}" class="mb-3">
                 <div class="input-group">
                     <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="Search by name...">
                     <button type="submit" class="btn btn-outline-primary">
@@ -29,23 +29,26 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
+                    <th>Date Naissance</th>
+                    <th>Malade</th>
                     <th sec:authorize="hasRole('ADMIN')">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="p : ${listProducts}">
+                <tr th:each="p : ${listPatients}">
                     <td th:text="${p.id}"></td>
                     <td th:text="${p.name}"></td>
-                    <td th:text="${p.price}"></td>
-                    <td th:text="${p.quantity}"></td>
+                    <td th:text="${#dates.format(p.dateNaissance, 'yyyy-MM-dd')}"></td>
+                    <td>
+                        <span th:if="${p.malade}" class="badge bg-danger">Yes</span>
+                        <span th:unless="${p.malade}" class="badge bg-success">No</span>
+                    </td>
                     <td sec:authorize="hasRole('ADMIN')">
-                        <a th:href="@{/admin/edit(id=${p.id})}" class="btn btn-warning btn-sm">
+                        <a th:href="@{/admin/editPatient(id=${p.id})}" class="btn btn-warning btn-sm">
                             <i class="bi bi-pencil"></i>
                         </a>
                         <a onclick="return confirm('Are you sure?')"
-                           th:href="@{/admin/delete(id=${p.id}, page=${currentPage}, keyword=${keyword})}"
+                           th:href="@{/admin/deletePatient(id=${p.id}, page=${currentPage}, keyword=${keyword})}"
                            class="btn btn-danger btn-sm">
                             <i class="bi bi-trash"></i>
                         </a>
@@ -53,13 +56,12 @@
                 </tr>
                 </tbody>
             </table>
-            <!-- Pagination -->
             <nav th:if="${totalPages > 1}">
                 <ul class="pagination justify-content-center">
                     <li th:each="page, status : ${pages}" class="page-item"
                         th:classappend="${status.index == currentPage} ? 'active'">
                         <a class="page-link"
-                           th:href="@{/user/index(page=${status.index}, keyword=${keyword})}"
+                           th:href="@{/user/patients(page=${status.index}, keyword=${keyword})}"
                            th:text="${status.index + 1}"></a>
                     </li>
                 </ul>
