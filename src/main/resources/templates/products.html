@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Products</title>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.7/bootstrap.min.css" />
 </head>
 <body>
-  <div>
+  <div class="p-3">
     <table>
       <thead>
         <th>ID</th><th>Name</th><th>Price</th><th>Quantity</th>
@@ -16,6 +17,9 @@
           <td th:text="${product.name}"></td>
           <td th:text="${product.price}"></td>
           <td th:text="${product.quantity}"></td>
+          <td>
+            <a class="btn btn-danger" onclick="return confirm('etes vous sure ?')" th:href="@{/delete(id=${p.id})}"></a>
+          </td>
         </tr>
       </tbody>
     </table>
